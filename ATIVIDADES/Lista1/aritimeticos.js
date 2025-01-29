@@ -18,7 +18,6 @@ let largura = 100
 let altura = 300
 
 let mult2 = largura * altura
-
 console.log(mult)
 
 //3
@@ -39,5 +38,6 @@ console.log(media)
 
 //5
 let cel = 10
+
 let fah = (cel * 9/5) +32
 console.log(fah)
