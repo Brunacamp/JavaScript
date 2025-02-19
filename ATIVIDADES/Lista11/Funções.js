@@ -65,7 +65,7 @@ function compararIdade () {
     if (idade1 > idade2) {
         console.log("Idade um é maior.")
     } else {
-        console.log("Idade um é menor.")
+        console.log("Idade dois é maior.")
     }
 }
 compararIdade()
