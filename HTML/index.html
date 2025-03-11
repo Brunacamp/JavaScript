@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="texto">Texto Antigo</p>
+    <button onclick="mudarTexto()">Clique</button>
+    <button onclick="mudarCor()">Cor</button>
+
+    <input type="text" id="campo" oninput="trocarFundo()">
+
+    <img src="img.jpg" alt="" onmouseover="troca()" onmouseleave="destroca()"
+    id="imagem" width="200px" height="200px">
+
+    <p id="mensagem" onmouseover="outroTexto()" onmouseleave="voltarTexto()">Passe o mouse aqui</p>
+
+    <p id="sumir">Esse texto vai sumir</p>
+    <button onclick="aparece()">Ocultar e mostrar texto</button>
+
+    <button onclick="aleatorio()">Alterar tamanho</button>
+    <p id="tamanho">Esse texto vai mudar o tamanho</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
