@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(rgb(219, 26, 26), rgb(58, 10, 10));
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .btn {
+            background-color: rgb(255, 255, 255);
+            font: 300 30px "Arial";
+            padding: 15px 30px;
+            border-radius: 15px;
+            border: none;
+            color: rgb(168, 18, 18);
+            transition: ease-in-out 0.4s;
+            width: 200px;
+        }
+        .tituloPrincipal {
+            font: 700px 40px "Arial";
+            color: white;
+        }
+        .titulo {
+            text-align: center;
+            margin: 20px 0 80px;
+        }
+        .botoes {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="titulo">
+        <h1 class="tituloPrincipal">Vamos fazer um curso no Senai?</h1>
+    </div>
+    <div class="botoes">
+        <div class="botaoS">
+        <button class="btn" onclick="sim()">SIM</button>
+    </div>
+    <div class="botaoN">
+        <button class="btn" id="btn" onclick="desvia()"
+        onmouseover="desvia()">NÃO</button>
+    </div>
+
+    <script>
+        function sim() {
+            window.location.href = "https://sp.senai.br/unidade/suzano/"
+        }
+        function desvia() {
+            let bnt = document.getElementById("btn")
+            btn.style.position = "absolute"
+            btn.style.bottom = geraPosição(10,80)
+            btn.style.left = geraPosição(10,80)
+        }
+        function geraPosição(min, max) {
+            return (Math.random() * (max - min)+min)+"%"
+        }
+
+    </script>
+
+</body>
+</html>
