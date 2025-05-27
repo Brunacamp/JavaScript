@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contagem Regressiva</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <h1>Black Friday</h1>
+  <h2>Contagem regressiva para: 28/11/2025</h2>
+
+  <div id="contador">
+    <p id="dias"></p>
+    <p id="horas"></p>
+    <p id="minutos"></p>
+    <p id="segundos"></p>
+  </div>
+
+  <div id="barraProgressoContainer">
+    <div id="barraProgresso"></div>
+  </div>
+
+  <audio id="audioFinal" src="som.mp3" preload="auto"></audio>
+
+  <script>
+    const audioFinal = document.getElementById("audioFinal");
+
+    const dataInicio = new Date(2025, 4, 27); 
+    const dataAlvo = new Date(2025, 10, 28);
+
+    function atualizarContador() {
+      const agora = new Date();
+      const tempoTotal = dataAlvo - dataInicio;
+      const tempoDecorrido = agora - dataInicio;
+      const tempoRestante = dataAlvo - agora;
+
+      if (tempoRestante <= 0) {
+        document.getElementById("contador").innerHTML = "<p>O EVENTO COMEÇOU!</p>";
+        document.getElementById("barraProgresso").style.width = "100%";
+        audioFinal.play();
+        clearInterval(intervalo);
+        return;
+      }
+
+      const dias = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((tempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((tempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((tempoRestante % (1000 * 60)) / 1000);
+
+      document.getElementById("dias").textContent = String(dias).padStart(2, '0') + "d";
+      document.getElementById("horas").textContent = String(horas).padStart(2, '0') + "h";
+      document.getElementById("minutos").textContent = String(minutos).padStart(2, '0') + "m";
+      document.getElementById("segundos").textContent = String(segundos).padStart(2, '0') + "s";
+
+      const porcentagemDecorrida = Math.min((tempoDecorrido / tempoTotal) * 100, 100);
+      document.getElementById("barraProgresso").style.width = porcentagemDecorrida + "%";
+    }
+
+    atualizarContador();
+    const intervalo = setInterval(atualizarContador, 1000);
+  </script>
+</body>
+</html>
