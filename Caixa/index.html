@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Caixa - Loja Gamer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>GameStation</h2>
+
+    <div class="produtos">
+        <div class="produtoCaixa">
+            <img id="img" src="img/GodOfWar.jpg" alt="God of War">
+            <p><strong>God of War Ragnarök</strong><br>R$299</p>
+            <button onclick="adicionarItem('God of War Ragnarök', 299)">Adicionar</button>
+        </div>
+        <div class="produtoCaixa">
+            <img id="img" src="img/Fifa24.jpg" alt="FIFA 24">
+            <p><strong>FIFA 24</strong><br>R$249</p>
+            <button onclick="adicionarItem('FIFA 24', 249)">Adicionar</button>
+        </div>
+        <div class="produtoCaixa">
+            <img id="img" src="img/EldenRing.jpg" alt="Elden Ring">
+            <p><strong>Elden Ring</strong><br>R$279</p>
+            <button onclick="adicionarItem('Elden Ring', 279)">Adicionar</button>
+        </div>
+        <div class="produtoCaixa">
+            <img id="img" src="img/TheLastofUs2.png" alt="The Last of Us Part II">
+            <p><strong>The Last of Us Part II</strong><br>R$199</p>
+            <button onclick="adicionarItem('The Last of Us Part II', 199)">Adicionar</button>
+        </div>
+        <div class="produtoCaixa">
+            <img id="img" src="img/MarioKart.jpg" alt="Mario Kart 8 Deluxe">
+            <p><strong>Mario Kart 8 Deluxe</strong><br>R$239</p>
+            <button onclick="adicionarItem('Mario Kart 8 Deluxe', 239)">Adicionar</button>
+        </div>
+        <div class="produtoCaixa">
+            <img id="img" src="img/Gta5.png" alt="GTA5">
+            <p><strong>Grand Theft Auto V</strong><br>R$85</p>
+            <button onclick="adicionarItem('GTA5', 85)">Adicionar</button>
+        </div>
+    </div>
+
+    <h3>Itens:</h3>
+    <ul id="listarItens"></ul>
+
+    <h3 id="mensagemDesconto" style="color: green;"></h3>
+    <h3>Total: R$ <span id="total">0.00</span></h3>
+
+    <label>Valor pago pelo cliente: R$
+        <input type="number" id="valorPago" step="0.01">
+    </label>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+
+    <h3>Troco: R$ <span id="troco">0.00</span></h3>
+
+    <button onclick="novaCompra()">Nova compra</button>
+
+    <script>
+        let itens = [];
+
+        function adicionarItem(produto, valor) {
+            itens.push({ produto, valor });
+            atualizarLista();
+            calcularTotal();
+        }
+
+        function atualizarLista() {
+            const lista = document.getElementById("listarItens");
+            lista.innerHTML = "";
+            itens.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = `${item.produto} - R$${item.valor.toFixed(2)}`;
+                lista.appendChild(li);
+            });
+        }
+
+        function calcularTotal() {
+            let subtotal = itens.reduce((acc, item) => acc + item.valor, 0);
+            let desconto = 0;
+            if (itens.length > 2) {
+                desconto = subtotal * 0.10;
+                document.getElementById("mensagemDesconto").textContent = "Desconto de 10% aplicado!";
+            } else {
+                document.getElementById("mensagemDesconto").textContent = "";
+            }
+
+            const total = subtotal - desconto;
+            document.getElementById("total").textContent = total.toFixed(2);
+            return total;
+        }
+
+        function finalizarCompra() {
+            const valorPago = parseFloat(document.getElementById("valorPago").value);
+            const total = calcularTotal();
+
+            if (isNaN(valorPago) || valorPago < total) {
+                alert("Valor pago insuficiente ou inválido.");
+                return;
+            }
+
+            const troco = valorPago - total;
+            document.getElementById("troco").textContent = troco.toFixed(2);
+        }
+
+        function novaCompra() {
+            itens = [];
+            document.getElementById("listarItens").innerHTML = "";
+            document.getElementById("total").textContent = "0.00";
+            document.getElementById("troco").textContent = "0.00";
+            document.getElementById("valorPago").value = "";
+            document.getElementById("mensagemDesconto").textContent = "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1c24;
+    padding: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+h2 {
+    font-size: 60px;
+    margin-top: 10px;
+    color: #a1e9be; 
+  text-shadow:
+    0 0 5px #2ecc71,
+    0 0 10px #2ecc71,
+    0 0 20px #2ecc71,
+    0 0 40px #2ecc71,
+    0 0 80px #2ecc71;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    
+    font-family: "Alumni Sans SC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+.produtos {
+    display: grid;
+    flex-wrap: wrap;
+    gap: 80px;
+    grid-template-columns: repeat(3, 1fr);
+}
+.produtoCaixa {
+    background-color: #0e0f13;
+    box-shadow: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: rgb(255, 255, 255);
+     box-shadow:
+        0 0 1px rgba(0, 0, 0, 0.6),
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(0, 0, 0, 0.3);
+
+    border: 1px solid rgba(0, 0, 0, 0.6); 
+    transition: 0.3s ease;
+
+}
+.produtoCaixa img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    width: 200px;
+    height: 250px;
+    
+}
+.produtoCaixa button {
+    margin-top: 10px;
+    background-color: #2ecc71;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight:600;
+}
+.produtoCaixa button:hover {
+    background-color: #27ae60;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.containerCompra {
+    background-color: #010718;
+    color: #f0f0f0;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 12px;
+    width: 300px;
+    box-shadow: 0 0 10px #2ecc71;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.containerCompra h3 {
+    margin: 10px 0;
+    color: #2ecc71;
+}
+
+#listarItens {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+#listarItens li {
+    background-color: #2a2f40;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 4px solid #2ecc71;
+}
+
+#mensagemDesconto {
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #2ecc71;
+    background-color: #0f111a;
+    color: #ffffff;
+}
+
+button {
+    background-color: #2ecc71;
+    color: #000;
+    border: none;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #2ecc71;
+}
+h3{
+    color: #ffffff;
+} 
+label{
+    color: #ffffff;
+}
