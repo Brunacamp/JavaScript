@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo do Patrick Estrela</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="caixa">
+    <h1>Adivinha com o Patrick!</h1>
+    <p class="descricao">Patrick pensou em um número de 1 a 100... Tente adivinhar!</p>
+
+    <div class="jogo">
+      <input type="number" id="input" placeholder="Digite seu palpite" min="1" max="100" />
+      <button id="botao">Tentar</button>
+      <p id="msg">Vamos ver o que acontece...</p>
+      <p id="tentativas">Tentativas restantes: 10</p>
+      <p id="historia">Histórico: nenhum palpite ainda</p>
+      <button id="reiniciar">Reiniciar jogo</button>
+    </div>
+
+  </div>
+<script>
+    let numeroSecreto;
+    let tentativasRestantes = 10;
+    let historico = [];
+
+const input = document.getElementById("input");
+const botaoTentar = document.getElementById("botao");
+const botaoReiniciar = document.getElementById("reiniciar");
+const mensagem = document.getElementById("msg");
+const tentativas = document.getElementById("tentativas");
+const historicoTexto = document.getElementById("historia");
+
+function iniciarJogo() {
+  numeroSecreto = Math.floor(Math.random() * 100) + 1;
+  tentativasRestantes = 10;
+  historico = [];
+  mensagem.textContent = "Vamos ver o que acontece...";
+  tentativas.textContent = `Tentativas restantes: ${tentativasRestantes}`;
+  historicoTexto.textContent = "Histórico: nenhum palpite ainda";
+  input.disabled = false;
+  botaoTentar.disabled = false;
+  input.value = "";
+}
+
+
+function verificarPalpite() {
+  const palpite = Number(input.value);
+
+  if (!palpite || palpite < 1 || palpite > 100) {
+    mensagem.textContent = "Patrick disse: 'Isso nem parece um número válido...'";
+    return;
+  }
+
+  historico.push(palpite);
+  tentativasRestantes--;
+
+  if (palpite === numeroSecreto) {
+  mensagem.textContent = `Patrick: "UAU! Você encontrou o número secreto ${numeroSecreto}!!" `;
+  encerrarJogo();
+} else {
+  if (tentativasRestantes <= 0) {
+    mensagem.textContent = `Patrick: "Fim de jogo... era ${numeroSecreto}! Eu esqueci onde escondi o número."`;
+    encerrarJogo();
+  } else if (palpite < numeroSecreto) {
+    mensagem.textContent = "Patrick: 'Hmm... tente um número MAIOR!'";
+  } else {
+    mensagem.textContent = "Patrick: 'Hmm... tente um número MENOR!'";
+  }
+}
+
+
+  tentativas.textContent = `Tentativas restantes: ${tentativasRestantes}`;
+  historicoTexto.textContent = `Histórico: ${historico.join(", ")}`;
+  input.value = "";
+}
+
+function encerrarJogo() {
+  input.disabled = true;
+  botaoTentar.disabled = true;
+}
+
+botaoTentar.addEventListener("click", verificarPalpite);
+botaoReiniciar.addEventListener("click", iniciarJogo);
+
+window.addEventListener("load", iniciarJogo);
+
+</script>
+  <script src="script.js"></script>
+</body>
+</html>
