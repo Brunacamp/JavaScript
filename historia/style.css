@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: url(apocalipse.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Quicksand", sans-serif;
+    display: grid;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+h1 {
+    font-size: 70px;
+    text-align: center;
+    color: #2f4b0f;
+}
+
+p {
+    font-size: 20px;
+}
+
+#historia {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px #62863a;
+    align-items: center;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #62863a;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #62863a;
+}
