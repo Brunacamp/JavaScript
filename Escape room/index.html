@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Escape Room</title>
+    <style>
+        body {
+            margin-top: 300px;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: white;
+            font-size:30px;
+        }
+        h1 {
+            font-size:50px;
+            color: #d12f2f;
+        }
+        .tela {
+            display: none;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .ativa {
+            display: block;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        #resultado-menu, #resultado-enigma {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .correta {
+            color: #4CAF50;
+        }
+
+        .incorreta {
+            color: #FF4C4C;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tela Inicial -->
+    <div id="tela-inicial" class="tela ativa">
+        <h1>Escape Room Virtual</h1>
+        <p>Você está preso em uma sala misteriosa! Encontre todas as 6 chaves resolvendo enigmas escondidos em objetos da sala.</p>
+        <button onclick="iniciarJogo()">Iniciar Jogo</button>
+    </div>
+
+    <!-- Menu Principal -->
+    <div id="menu" class="tela">
+        <h2>Escolha um objeto para investigar:</h2>
+        <button onclick="investigar('grampeador')">📎 Grampeador</button>
+        <button onclick="investigar('papeis')">📄 Papéis</button>
+        <button onclick="investigar('almofada')">🛋️ Almofada</button>
+        <button onclick="investigar('livro')">📚 Livro</button>
+        <button onclick="investigar('janela')">🪟 Janela</button>
+        <button onclick="investigar('armario')">🥇 Medalha</button>
+        <button onclick="verificarSaida()">🚪 Tentar sair</button>
+        <div id="resultado-menu"></div>
+    </div>
+
+    <!-- Tela de Enigma -->
+    <div id="tela-enigma" class="tela">
+        <h2 id="titulo-enigma"></h2>
+        <p id="pergunta-enigma"></p>
+        <input type="text" id="resposta-enigma" placeholder="Digite sua resposta aqui">
+        <br>
+        <button onclick="verificarResposta()">Enviar</button>
+        <div id="resultado-enigma"></div>
+    </div>
+
+    <!-- Tela Final -->
+    <div id="tela-final" class="tela">
+        <h1>🎉 Você escapou!</h1>
+        <p>Parabéns! Você encontrou todas as chaves e saiu da sala com sucesso!</p>
+        <button onclick="window.location.reload()">Jogar Novamente</button>
+    </div>
+
+    <script>
+        const enigmas = {
+            grampeador: {
+                titulo: "📎 Grampeador",
+                pergunta: "Sou cheia de buracos, mas seguro a água. O que sou?",
+                resposta: "esponja",
+                resolvido: false
+            },
+            papeis: {
+                titulo: "📄 Papéis",
+                pergunta: "Qual palavra está sempre escrita errada no dicionário?",
+                resposta: "errada",
+                resolvido: false
+            },
+            almofada: {
+                titulo: "🛋️ Almofada",
+                pergunta: "Tenho teclas, mas não portas. Tenho espaço, mas não salas. O que sou eu?",
+                resposta: "teclado",
+                resolvido: false
+            },
+            livro: {
+                titulo: "📚 Livro",
+                pergunta: "Quanto mais você tira de mim, maior eu fico. O que sou?",
+                resposta: "buraco",
+                resolvido: false
+            },
+            janela: {
+                titulo: "🪟 Janela",
+                pergunta: "Sou invisível, mas te faço suar quando estou por perto. Quem sou eu?",
+                resposta: "calor",
+                resolvido: false
+            },
+            armario: {
+                titulo: "🥇 Medalha",
+                pergunta: "Tenho cabeça e cauda, mas não tenho corpo. O que sou?",
+                resposta: "moeda",
+                resolvido: false
+            }
+        };
+
+        let enigmaAtual = "";
+
+        function mostrarTela(id) {
+            document.querySelectorAll(".tela").forEach(tela => tela.classList.remove("ativa"));
+            document.getElementById(id).classList.add("ativa");
+            document.getElementById("resultado-menu").textContent = "";
+            document.getElementById("resultado-enigma").textContent = "";
+        }
+
+        function iniciarJogo() {
+            mostrarTela("menu");
+        }
+
+        function investigar(item) {
+            if (enigmas[item].resolvido) {
+                mostrarresultado("✅ Você já resolveu esse enigma.", true, "menu");
+                return;
+            }
+            enigmaAtual = item;
+            document.getElementById("titulo-enigma").textContent = enigmas[item].titulo;
+            document.getElementById("pergunta-enigma").textContent = enigmas[item].pergunta;
+            document.getElementById("resposta-enigma").value = "";
+            mostrarTela("tela-enigma");
+        }
+
+        function verificarResposta() {
+            const resposta = document.getElementById("resposta-enigma").value.trim().toLowerCase();
+            const correta = enigmas[enigmaAtual].resposta;
+
+            if (resposta === correta) {
+                enigmas[enigmaAtual].resolvido = true;
+                mostrarresultado(" Resposta correta! Você encontrou uma chave!", true, "enigma");
+                setTimeout(() => mostrarTela("menu"), 1500);
+            } else {
+                mostrarresultado("❌ Tente novamente, resposta errada.", false, "enigma");
+            }
+        }
+
+        function mostrarresultado(mensagem, correta, origem = "enigma") {
+            const resultadoId = origem === "menu" ? "resultado-menu" : "resultado-enigma";
+            const resultado = document.getElementById(resultadoId);
+            resultado.textContent = mensagem;
+            resultado.className = correta ? "correta" : "incorreta";
+        }
+
+        function verificarSaida() {
+            const tudoResolvido = Object.values(enigmas).every(obj => obj.resolvido);
+            if (tudoResolvido) {
+                mostrarTela("tela-final");
+            } else {
+                mostrarresultado("🚪 A porta ainda está trancada. Encontre todas as chaves primeiro.", false, "menu");
+            }
+        }
+    </script>
+
+</body>
+</html>
