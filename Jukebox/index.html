@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Jukebox</h1>
+    <p>Selecione como está se sentindo e ouça uma musica:</p>
+
+    <button onclick="tocar('feliz')">Feliz</button>
+    <button onclick="tocar('triste')">Tristeza</button>
+    <button onclick="tocar('aventura')">Aventura</button>
+    <button onclick="tocar('amor')">Amor</button>
+    <button onclick="tocar('terror')">Terror</button>
+    <button onclick="tocar('calma')">Calma</button>
+    <button onclick="tocar('energia')">Energia</button>
+    <button onclick="tocar('suspense')">suspense</button>
+
+    <button onclick="parar()">Parar</button>
+
+    <div id="imagem" style="margin-top: 30px;">
+    <img src="" alt="" id="foto" width="300" style="display: none;">
+    </div>
+
+    <audio src="" id="audio" controls style="margin-top: 20px; display:
+    none; "></audio>
+
+    <script>
+    function tocar(tipo) {
+        const audio = document.getElementById("audio");
+        const foto = document.getElementById("foto");
+
+        let musica = "";
+        let imagem = "";
+        let cor = "";
+
+        if (tipo == "feliz") {
+            musica = "musicaFeliz.mp3";
+            imagem = "https://media.licdn.com/dms/image/v2/C5612AQGqQqmIKp4Eow/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520078126177?e=2147483647&v=beta&t=zEcMvBQgH2iYHLe5K_zCE5dMeShuGBo-5Wvl5_BIf2Q";
+            cor = "#ffe066";
+        }
+
+        if (tipo == "triste") {
+            musica = "MusicaTriste.mp3";
+            imagem = "https://dramichelleteixeira.com.br/wp-content/uploads/2023/05/Tristeza-persistente-o-que-fazer.jpg";
+            cor = "#407feb";
+        }
+
+        if (tipo == "aventura") {
+            musica = "musicaAventura.mp3";
+            imagem = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9OwsZJ0wDTD3HiH4Dy0w-h5ZkXSDn1NMGCg&s";
+            cor = "#ceeb40";
+        }
+
+        if (tipo == "amor") {
+            musica = "musicaAmor.mp3";
+            imagem = "https://www.psicologosberrini.com.br/wp-content/uploads/terapia-de-casal-amor-ou-costume-1024x576.jpg";
+            cor = "#c72020";
+        }
+
+        if (tipo == "terror") {
+            musica = "musicaTerror.mp3";
+            imagem = "https://static.wixstatic.com/media/58015e_f99703caa13e433bacfb20b4fbce14ce~mv2.jpg/v1/fill/w_568,h_358,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/58015e_f99703caa13e433bacfb20b4fbce14ce~mv2.jpg";
+            cor = "#000000";
+        }
+
+        if (tipo == "calma") {
+            musica = "musicaCalma.mp3";
+            imagem = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP-hiaWhTS8RV4p9Tq_frv8t8zpEW6wUxpeZlbaSqa6V1006OJE6bF3JD1gwHLoX-2uFw&usqp=CAU";
+            cor = "#c785de";
+        }
+
+        if (tipo == "energia") {
+            musica = "musicaEnergia.mp3";
+            imagem = "https://www.gazetadigital.com.br/storage/webdisco/2023/07/08/1200x900/c4e4863608f8576f0e552b9b4e979456.jpg";
+            cor = "#ffa800";
+        }
+
+        if (tipo == "suspense") {
+            musica = "musicaSuspense.mp3";
+            imagem = "https://opinioescertificadas.com.br/wp-content/uploads/2021/05/livros-de-suspense-capa.jpg";
+            cor = "#614105";
+        }
+
+        document.body.style.backgroundColor = cor;
+        foto.src = imagem;
+        foto.style.display = "block";
+
+        audio.src = musica;
+        audio.play();
+        audio.style.display = "block";
+    }
+
+    function parar() {
+        const audio = document.getElementById("audio");
+        audio.pause();
+        audio.currentTime = 0;
+        audio.style.display = "none";
+
+        const foto = document.getElementById("foto");
+        foto.style.display = "none";
+
+        document.body.style.backgroundColor = "#000";
+    }
+</script>
+</body>
+</html>
